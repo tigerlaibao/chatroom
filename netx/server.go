@@ -24,8 +24,8 @@ type user_msg struct {
 }
 
 func StartServer(port int){
-	service := strconv.AppendInt([]byte(":") , int64(port) , 10)
-	tcpAddr , err := net.ResolveTCPAddr("tcp4" , string(service))
+	service := string(strconv.AppendInt([]byte(":") , int64(port) , 10))
+	tcpAddr , err := net.ResolveTCPAddr("tcp4" , service)
 	if err != nil {
 		log.Fatalln("open server error " , err)
 	}
@@ -34,11 +34,12 @@ func StartServer(port int){
 		log.Fatalln("listen server error " , err)
 	}
 	go pushMsgJob()
-	log.Println("start server :1200 ok")
+	log.Println("start server "+ service +" ok")
 	for {
 		conn , err := listen.Accept()
 		if err != nil {
-			log.Fatalln("accept client error " , err)
+			log.Println("accept client error " , err)
+			continue
 		}
 		log.Println("accept client ok ,client:" , conn)
 		go handleClient(conn)
