@@ -1,6 +1,6 @@
 package main
 
-import "github.com/chatroom/netx"
+import "github.com/tigerlaibao/chatroom/netx"
 
 func main() {
 	netx.StartServer(8080)
