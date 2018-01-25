@@ -82,7 +82,7 @@ func handleClient(conn net.Conn){
 			break
 		}
 		msg := strings.TrimSpace(string(buf[:len]))
-		if strings.TrimSpace(msg) == "" {
+		if msg == "" {
 			continue
 		}
 		nick := client_conn_2_nick_map[conn]
