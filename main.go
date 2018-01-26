@@ -1,7 +1,19 @@
 package main
 
-import "github.com/tigerlaibao/chatroom/netx"
+import (
+	"github.com/tigerlaibao/chatroom/netx"
+	"flag"
+)
+
+var (
+	port int
+)
+
+func init(){
+	flag.IntVar(&port , "port" , 8080 , "the port")
+}
 
 func main() {
-	netx.StartServer(8080)
+	flag.Parse()
+	netx.StartServer(port)
 }
