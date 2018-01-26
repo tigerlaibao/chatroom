@@ -11,9 +11,9 @@ var (
 
 func init(){
 	flag.IntVar(&port , "port" , 8080 , "the port")
+	flag.Parse()
 }
 
 func main() {
-	flag.Parse()
 	netx.StartServer(port)
 }
